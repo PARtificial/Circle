@@ -1,0 +1,44 @@
+package Lab02;
+
+public class Circle implements Cloneable {
+    private double radius;
+
+    public Circle() {
+        this.radius = 1;
+    }
+
+    public double getRadius() {
+        return this.radius;
+    }
+
+    private void setRadius(double newRadius) {
+        if (newRadius > 0) {
+            this.radius = newRadius;
+        } else {
+            System.out.println("Radius cannot be negative.");
+        }
+    }
+
+    public void resize(double newRadius) {
+        setRadius(newRadius);
+    }
+
+    @Override
+    public Circle clone() {
+        try {
+            return (Circle) super.clone();
+        } catch (CloneNotSupportedException e) {
+            // This should not happen since we are Cloneable
+            throw new InternalError(e);
+        }
+    }
+
+    public boolean equals(Circle guest) {
+        if (guest == null) return false;
+        return this.radius == guest.getRadius();
+    }
+
+    public void print() {
+        System.out.printf("Circle with radius: %.2f\n", this.radius);
+    }
+}
